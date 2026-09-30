@@ -6,7 +6,10 @@ A first-pass analysis of real customer complaints, built to practise turning wri
 
 > **Status: work in progress.** This is a first attempt at the problem. I plan to keep improving it, and the "Where I'd take it next" section lists the next steps.
 
-![Dashboard](images/dashboard.png)
+<img width="1112" height="727" alt="Dashboard1" src="https://github.com/user-attachments/assets/8ecfdde5-d92b-46dc-be0f-002835417d88" />
+<img width="1262" height="387" alt="Dashboard2" src="https://github.com/user-attachments/assets/4fdd1696-e91a-418d-9f00-bb5b64bda90c" />
+
+
 <!-- Add a screenshot of the Power BI dashboard at images/dashboard.png -->
 
 ## What this project is
