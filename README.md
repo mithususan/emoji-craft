@@ -1,2 +1,87 @@
 # Customer-Complaints-Text-Analysis-
 A first-pass analysis of real credit card complaints (US CFPB data) to find out how upset customers are, what they're upset about, and whether being more upset leads to better outcomes. It uses Python, SQL and Power BI, with AI assistance.
+
+# What are credit card customers complaining about, and how upset are they?
+
+A first-pass analysis of real customer complaints, built to practise turning written feedback into insights a business could act on.
+
+> **Status: work in progress.** This is a first attempt at the problem. I plan to keep improving it, and the "Where I'd take it next" section lists the next steps.
+
+![Dashboard](images/dashboard.png)
+<!-- Add a screenshot of the Power BI dashboard at images/dashboard.png -->
+
+## What this project is
+Companies receive thousands of written complaints, and nobody can read them all. I took **5,771 real credit card complaints** from the US Consumer Financial Protection Bureau (CFPB) and tried to answer four simple questions:
+
+1. How upset are customers?
+2. Which problems and which companies make them most upset?
+3. What words keep coming up in the angriest complaints?
+4. Do customers who are more upset get better outcomes?
+
+The data is public: the [CFPB Consumer Complaint Database](https://www.consumerfinance.gov/data-research/consumer-complaints/), January to February 2026.
+
+## What I found (early results)
+- **About 1 in 3 complaints is written in angry or distressed language** (34%). Another 20% is clearly frustrated, and 46% is calm and factual.
+- **Disputed purchases are the biggest and angriest problem.** They make up about a third of all complaints, and 59% of those are angry.
+- **The anger is mostly about how disputes and fraud are handled**, not about fees. Words like *billing error*, *denied dispute*, *identity theft* and *unauthorized charges* keep appearing.
+- **More upset customers do not get better outcomes.** About 27% of angry customers received some form of relief, against 25% of calm ones, which is almost no difference.
+- **Companies differ noticeably.** The share of angry complaints ranges from about 23% at the lowest to 53% at the highest, among companies with at least 100 complaints.
+
+These are early findings from a limited sample. Please treat them as a starting point, not firm conclusions.
+
+## How I approached it
+1. **Cleaned the data:** picked one product (credit cards) and kept only complaints where the customer wrote their own story.
+2. **Scored the tone of each complaint** with a ready-made tool that rates how positive or negative wording is.
+3. **Checked the tool by hand:** I read and labelled 60 complaints myself and compared my judgement with the tool's.
+4. **Counted common phrases** in angry complaints compared with calm ones, to see what people are upset about.
+5. **Compared groups:** by issue, by company, by week, and by outcome.
+6. **Built a dashboard** in Power BI and used SQL queries for the summary numbers.
+
+**Tools used:** Python (in a Jupyter notebook), SQL, Power BI and AI assistance (see below).
+
+## Decisions I made along the way
+- **I chose credit card complaints** to keep the scope small and the story clear, so I could finish a first version quickly.
+- **I changed how I measured sentiment.** My first version sorted complaints into positive, neutral and negative. When I read the data, I noticed almost everyone is unhappy, because it's a complaints dataset, so that split told me very little. I switched to three levels of **distress** (calm, frustrated, angry) instead.
+- **I checked the tool against my own judgement** rather than trusting it. On my 60 hand-labelled complaints, the tool's level matched mine **XX%** of the time (XX out of 60). <!-- fill in from the notebook -->
+- **I used weekly instead of monthly trends,** because the data only covers two months.
+- **I left out channels** (web, phone and so on), because every complaint in this extract came through the web.
+
+## How I used AI
+AI (Claude) was a working partner throughout, and this is how I used it:
+- to plan the project and choose an approach that fit the job requirements and my experience level,
+- to help write and explain the code, so I could learn each step as I went,
+- to build the Power BI measures and the dashboard layout,
+- to talk through problems, for example why the first sentiment split didn't make sense here.
+
+I ran the analysis, read the complaints, labelled the sample, checked the results, and decided what to change. AI made me faster, but the judgement calls and the checking of results were mine.
+
+## Limitations (what to keep in mind)
+- The tone-scoring tool reads **wording, not feelings**. It can miss sarcasm or polite anger, and it can label a calm description of something serious, like fraud, as angry.
+- Only complaints with a written story are included (5,771 of about 17,000 credit card complaints), and customers choose whether to share their story, so the sample may not represent everyone.
+- Two months of data is short, so the trends are only indicative.
+- "Received relief" is not the same as "treated fairly". Some complaints may rightly end with just an explanation.
+- This shows patterns, not causes.
+
+## Where I'd take it next
+- **Group complaints into themes automatically,** instead of relying on counted phrases.
+- **Try a more advanced sentiment tool** and compare it with the current one on the same 60 complaints.
+- **Use more months of data** to see seasonal patterns and longer trends.
+- **Look at more products,** such as bank accounts and loans, to see whether the same patterns appear.
+- **Test whether distress predicts outcomes** more carefully, alongside other factors such as issue and company.
+- **Make the dashboard filterable** in more ways and add a simple alert for weeks when distress spikes.
+
+## What's in this repository
+| File | What it is |
+|---|---|
+| `sentiment_analysis.ipynb` | The analysis, step by step, with plain-English comments |
+| `queries.sql` | The SQL queries used for summary numbers |
+| `Credit_Card_Complaints_Analysis.pbix` | The Power BI report |
+| `dashboard_mockup.html` | A static preview of the dashboard design |
+| `images/` | Dashboard screenshots |
+
+The raw data file (about 350 MB) isn't included. To reproduce the analysis, download the complaints from the CFPB link above, save the file as `data/Complaints_JanFeb2026.csv`, and run the notebook.
+
+## About me
+*Mithu Susan Thomas* ·
+
+I'm building my skills in customer insights and data analysis, and this project is one step in that. Feedback is welcome.
